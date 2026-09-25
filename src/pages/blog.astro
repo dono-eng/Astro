@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
 
-// Añadimos url: string junto con frontmatter al tipo
 const postsMap = import.meta.glob<{ url: string; frontmatter: { title: string } }>('./posts/*.md', { eager: true });
 const allPosts = Object.values(postsMap);
 
@@ -12,7 +12,7 @@ const pageTitle = "My Astro Learning Blog";
   <p>This is where I will post about my journey learning Astro.</p>
   <ul>
     {allPosts.map((post) => (
-      <li><a href={post.url}>{post.frontmatter.title}</a></li>
+      <BlogPost url={post.url} title={post.frontmatter.title} />
     ))}
   </ul>
 </BaseLayout>
