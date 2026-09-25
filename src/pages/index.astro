@@ -1,14 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 import '../styles/global.css';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const pageTitle = "Página de inicio";
 ---
 
-<Layout>
-  <a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/blog/">Blog</a>
-	<h1>¡Hola, mundo!</h1>
-</Layout>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Navigation />
+
+    <h1>{pageTitle}</h1>
+  </body>
+</html>
