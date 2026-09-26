@@ -5,11 +5,11 @@ import BlogPost from '../components/BlogPost.astro';
 const postsMap = import.meta.glob<{ url: string; frontmatter: { title: string } }>('./posts/*.md', { eager: true });
 const allPosts = Object.values(postsMap);
 
-const pageTitle = "My Astro Learning Blog";
+const pageTitle = "Blogs";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>This is where I will post about my journey learning Astro.</p>
+  <p>Conoce a algunos de mis personajes favoritos.</p>
   <ul>
     {allPosts.map((post) => (
       <BlogPost url={post.url} title={post.frontmatter.title} />

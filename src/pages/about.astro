@@ -1,21 +1,19 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "About Me";
+const pageTitle = "Sobre mí";
 
 const identity = {
   firstName: "Donovan",
   country: "México",
-  occupation: "Estudiante de Software",
-  hobbies: ["desarrollo de software", "videojuegos", "anime"],
+  occupation: "Estudiante de Desarrollo de Software",
+  hobbies: ["Cocinar", "Ver series", "Salir con amigos", "Jugar videojuegos"],
 };
 
-const skills = ["HTML", "CSS", "JavaScript", "Astro", "C++", "Java", "Python"];
+const skills = ["HTML", "CSS", "JavaScript", "Astro", "Preact", "C++", "Python"];
 
 const happy = true;
-const finished = false;
+const finished = true;
 const goal = 3;
 
 const skillColor = "navy";
@@ -23,56 +21,39 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
+<BaseLayout pageTitle={pageTitle}>
+  <style is:global define:vars={{skillColor, fontWeight, textCase}}>
+    h1 {
+      color: #ff4d6d;
+      font-size: 2.5rem;
+    }
+    .skill {
+      color: var(--skillColor);
+      font-weight: var(--fontWeight);
+      text-transform: var(--textCase);
+    }
+  </style>
 
-    <style define:vars={{ skillColor, fontWeight, textCase }}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-      .skill {
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
+  <h2>... ¡y mi nuevo sitio en Astro!</h2>
 
-    <h1>{pageTitle}</h1>
-    <h2>... and my new Astro site!</h2>
+  <p>Estoy trabajando en el tutorial introductorio de Astro. Esta es la segunda página de mi sitio web</p>
 
-    <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+  <p>Este sitio es acerca de algunos de mis personajes favoritos del anime One Piece el cual recomiendo completamente verlo, anque esta largo tiene un encanto que no todo anime tiene</p>
 
-    <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+  <p>He aquí algunos datos sobre mí:</p>
+  <ul>
+    <li>Mi nombre es {identity.firstName}.</li>
+    <li>Vivo en {identity.country} y soy {identity.occupation}.</li>
+    {identity.hobbies.length >= 2 &&
+      <li>Dos de mis pasatiempos son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
+    }
+  </ul>
+  <p>Algunas habilidades que e adquirido en programacion son:</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
 
-    <p>Here are a few facts about me:</p>
-    <ul>
-      <li>My name is {identity.firstName}.</li>
-      <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-      {identity.hobbies.length >= 2 &&
-        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-      }
-    </ul>
+  {happy && <p>Estoy feliz de estar aprendiendo Astro</p>}
 
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
-
-    {happy && <p>I am happy to be learning Astro!</p>}
-    {finished && <p>I finished this tutorial!</p>}
-    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
-  </body>
-</html>
+  {finished && <p>Y compartir un gusto que tengo</p>}
+</BaseLayout>
